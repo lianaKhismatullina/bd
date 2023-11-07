@@ -1,5 +1,42 @@
 <script>
     import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
+    let who="";
+    function click(){
+        if (who.length) {
+            dispatch('добавить', {text: who});
+            who="";
+        }
+    }
+</script>
+
+<div class="todo-controls">
+    <input class="vod" type="text" bind:value={who}/>
+    <button class="gal" on:click={click}>Добавить</button>
+</div>
+<style>
+    .todo-controls{
+        display: grid;
+        grid-template-columns: 80%20%;
+    }
+    .gal{
+        background: rgb(9, 189, 39);
+        border-radius: 0 10px 10px 0;
+        border:none;
+
+    }
+    .vod{
+        border: none;
+        border-radius: 10px 0 0 10px;
+        padding: 10px;
+    }
+</style>
+
+
+<!--
+<script>
+    import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
     let inputValue = "";
@@ -32,4 +69,4 @@
         background: rgb(52, 116, 236);
     }
 </style>
-
+-->

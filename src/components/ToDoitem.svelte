@@ -1,4 +1,56 @@
 <script>
+    export let text;
+    export let id;
+    export let isDone;
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
+</script>
+
+<div class="menu" class:menu_done={isDone}>
+    <input 
+    class="check"
+    type="checkbox"
+    on:change={dispatch("change", {id})}
+    checked={isDone}
+    />
+    <span class="text">{text}</span>
+    <button class="del" on:click={dispatch("del", {id})} >Удалить</button>
+</div>
+
+<style>
+    .menu{
+        display: flex;
+        align-items:center;
+        justify-content: space-between;
+        padding: 15px;
+        background: rgb(104, 242, 177);
+        border-radius: 15px;
+
+    }
+    .menu_done{
+        background: rgb(196, 179, 244);
+    }
+    .menu_done .text{
+        text-decoration: line-through;
+    }
+    .del{
+        border:none;
+        border-radius:10px;
+        background: rgb(146, 37, 37);
+        padding: 10px;
+        min-width: 150px;
+
+    }
+    .text{
+        flex-grow:1;
+    }
+
+</style>
+
+
+<!--
+<script>
     export let id;
     export let text;
     export let isDone;
@@ -53,3 +105,4 @@
 
     }
 </style>
+-->
